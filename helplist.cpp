@@ -1,6 +1,8 @@
 
 ////////////
 /////////////
+// um is alive
+
 
 #include <iostream>
 #include "help.h"
@@ -30,17 +32,17 @@ void  helplist:: AddHelp(help* pSelection)
 		apTail = pSelection;
 		pSelection->set_prenode(NULL);
 		pSelection->set_nextnode(NULL);
-		// Ã³À½ µé¾î¿Â Object¸¦ Ã¹ ÁÖ¼Ò·Î ÇÏ°í, µé¾î¿Â objectÀÇ next node¸¦ ÃÊ±âÈ­
+		// ÃƒÂ³Ã€Â½ ÂµÃ©Â¾Ã®Â¿Ã‚ ObjectÂ¸Â¦ ÃƒÂ¹ ÃÃ–Â¼Ã’Â·Ã Ã‡ÃÂ°Ã­, ÂµÃ©Â¾Ã®Â¿Ã‚ objectÃ€Ã‡ next nodeÂ¸Â¦ ÃƒÃŠÂ±Ã¢ÃˆÂ­
 
-		aSize++; // node °¹¼ö Áõ°¡
+		aSize++; // node Â°Â¹Â¼Ã¶ ÃÃµÂ°Â¡
 	}
 	else
 	{
-		pSelection->set_prenode(apTail); // tailÀ» objectÀÇ prenode·Î ¿¬°á
-		apTail->set_nextnode(pSelection); // tailÀÇ next node¸¦ object·Î ¿¬°á
-		apTail = pSelection; // tailÀ» ÃÖ±Ù¿¡ µé¾î¿Â object·Î º¯°æ
+		pSelection->set_prenode(apTail); // tailÃ€Â» objectÃ€Ã‡ prenodeÂ·Ã Â¿Â¬Â°Ã¡
+		apTail->set_nextnode(pSelection); // tailÃ€Ã‡ next nodeÂ¸Â¦ objectÂ·Ã Â¿Â¬Â°Ã¡
+		apTail = pSelection; // tailÃ€Â» ÃƒÃ–Â±Ã™Â¿Â¡ ÂµÃ©Â¾Ã®Â¿Ã‚ objectÂ·Ã ÂºÂ¯Â°Ã¦
 		pSelection->set_nextnode(NULL);
-		aSize++; // node °¹¼ö Áõ°¡
+		aSize++; // node Â°Â¹Â¼Ã¶ ÃÃµÂ°Â¡
 	}
 }
 void  helplist::RemoveHelp(help* pSelection)
@@ -57,22 +59,22 @@ void  helplist::RemoveHelp(help* pSelection)
 	}
 	else if (pSelection == apTail)
 	{
-		apTail = pSelection->get_prenode(); // tailÀ» ¾ÕÀÇ °É·Î ¹Ù²ãÁÜ
-		apTail->set_nextnode(NULL); // »õ·Î¿î TAILÀÇ NEXT NODE¸¦ ÃÊ±âÈ­ÇØÁÜ
-		pSelection->set_prenode(NULL); // pObjectÀÇ pre node¸¦ ÃÊ±âÈ­ ÇØÁÜ
+		apTail = pSelection->get_prenode(); // tailÃ€Â» Â¾Ã•Ã€Ã‡ Â°Ã‰Â·Ã Â¹Ã™Â²Ã£ÃÃœ
+		apTail->set_nextnode(NULL); // Â»ÃµÂ·ÃÂ¿Ã® TAILÃ€Ã‡ NEXT NODEÂ¸Â¦ ÃƒÃŠÂ±Ã¢ÃˆÂ­Ã‡Ã˜ÃÃœ
+		pSelection->set_prenode(NULL); // pObjectÃ€Ã‡ pre nodeÂ¸Â¦ ÃƒÃŠÂ±Ã¢ÃˆÂ­ Ã‡Ã˜ÃÃœ
 		aSize--;
 	}
 	else if (pSelection != apHead && pSelection != apTail && pSelection->get_nextnode() != NULL && pSelection->get_prenode() != NULL)
-		//HEAD¿Í TAILÀÌ ¾Æ´Ï¸é¼­, LINK µÇ¾î ÀÖ´Â °æ¿ì
+		//HEADÂ¿Ã TAILÃ€ÃŒ Â¾Ã†Â´ÃÂ¸Ã©Â¼Â­, LINK ÂµÃ‡Â¾Ã® Ã€Ã–Â´Ã‚ Â°Ã¦Â¿Ã¬
 	{
-		pSelection->get_prenode()->set_nextnode(pSelection->get_nextnode()); // objectÀÇ prenodeÀÇ nextnode¸¦ objectÀÇ nextnode·Î ¿¬°á
-		pSelection->get_nextnode()->set_prenode(pSelection->get_prenode()); // objectÀÇ nextnodeÀÇ prenode¸¦ objectÀÇ prenode·Î ¿¬°á
+		pSelection->get_prenode()->set_nextnode(pSelection->get_nextnode()); // objectÃ€Ã‡ prenodeÃ€Ã‡ nextnodeÂ¸Â¦ objectÃ€Ã‡ nextnodeÂ·Ã Â¿Â¬Â°Ã¡
+		pSelection->get_nextnode()->set_prenode(pSelection->get_prenode()); // objectÃ€Ã‡ nextnodeÃ€Ã‡ prenodeÂ¸Â¦ objectÃ€Ã‡ prenodeÂ·Ã Â¿Â¬Â°Ã¡
 
 		pSelection->set_prenode(NULL);
-		pSelection->set_nextnode(NULL); // pObjectÀÇ ¿¬°áÀ» ¸ğµÎ ²÷À½
+		pSelection->set_nextnode(NULL); // pObjectÃ€Ã‡ Â¿Â¬Â°Ã¡Ã€Â» Â¸Ã°ÂµÃ Â²Ã·Ã€Â½
 		aSize--;
 	}
-	delete pSelection; // SELECTION µ¿ÀûÇÒ´ç ÇØÁ¦
+	delete pSelection; // SELECTION ÂµÂ¿Ã€Ã»Ã‡Ã’Â´Ã§ Ã‡Ã˜ÃÂ¦
 }
 void helplist::Clear()
 {
